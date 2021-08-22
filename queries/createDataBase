@@ -1,0 +1,37 @@
+drop table General_Info;
+
+create table General_Info (
+	ID SERIAL,
+	Numero_sorteo VARCHAR(15),
+	Fecha VARCHAR (15),
+	PRIMARY KEY (ID)
+);
+
+
+create table Numbers_Baloto (
+	ID_baloto SERIAL,
+	Acumulado VARCHAR(25),
+	Numero_ganadores VARCHAR(25),
+	Balota1 INTEGER,
+	Balota2 INTEGER,
+	Balota3 INTEGER,
+	Balota4 INTEGER,
+	Balota5 INTEGER,
+	ID_general INTEGER,
+	PRIMARY KEY(ID_baloto),
+	CONSTRAINT fk_general_info	FOREIGN KEY(ID_general) REFERENCES General_Info(ID)
+);
+
+create table Numbers_Revancha(
+	ID_revancha	SERIAL,
+	Acumulado VARCHAR(25),
+	Numero_ganadores VARCHAR(25),
+	Balota1 INTEGER,
+	Balota2 INTEGER,
+	Balota3 INTEGER,
+	Balota4 INTEGER,
+	Balota5 INTEGER,
+	ID_general INTEGER,
+	PRIMARY KEY(ID_revancha),
+	CONSTRAINT fk_general_info_revancha	FOREIGN KEY(ID_general) REFERENCES General_Info(ID)
+);
