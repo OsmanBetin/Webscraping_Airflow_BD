@@ -1,3 +1,4 @@
+import json
 
 def generate_full_path(curr_dir: str, name_dir_base: str, dir_add: str) -> str:
     try:
@@ -11,5 +12,17 @@ def generate_full_path(curr_dir: str, name_dir_base: str, dir_add: str) -> str:
         # Generate the full path for new directory
         return '/'.join(new_dir)
     except ValueError:
+        return None
+
+def get_value_from_config(full_path: str, key: str) -> str:
+    try:
+        with open(full_path) as f:
+            file_json = json.load(f)
+            return file_json[key]
+    except KeyError:
+        print('Key not in Config file')
+        return None
+    except FileNotFoundError:
+        print('File Not found in the directory passed')
         return None
 

@@ -1,6 +1,5 @@
 import os
-import json
-from functions import generate_full_path
+from functions import generate_full_path, get_value_from_config
 
 # Name of directories
 dir_config = 'Config'
@@ -11,11 +10,14 @@ cur_dir = os.getcwd()
 
 full_path_config = generate_full_path(cur_dir, dir_base, dir_config)
 full_path_config = full_path_config + '/' + 'config.json'
+print('Full Config path ', full_path_config)
 
-# read the config file
-with open(full_path_config) as config_file:
-    file_json = json.load(config_file)
-    print(file_json)
-    print()
-    print(file_json['web_page'])
+def get_value_config(key):
+    try:
+        value_config = get_value_from_config(full_path_config, key)
+        # print('Value Config ', value_config)
+        return value_config
+    except TypeError as e:
+        print('Missing required positional argument ', e)
+        return None
 
