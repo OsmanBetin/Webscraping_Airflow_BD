@@ -1,9 +1,9 @@
 from selenium import webdriver
 # from selenium.webdriver.support.ui import WebDriverWait
 import os
-from functions import generate_full_path
+from functions import generate_full_path, click_on_bal_revancha
 from read_config import get_value_config
-import time 
+import time
 
 cur_dir = os.getcwd()
 dir_base = 'Webscraping_Airflow_BD'
@@ -19,7 +19,9 @@ print(full_path_driver)
 url = get_value_config('web_page')
 max_retries = get_value_config('max_retries')
 time_out = get_value_config('time_out_short')
-
+# Get the options to Select: Baloto or Revancha options
+revancha_pop = get_value_config('revancha_popup')
+baloto_pop = get_value_config('baloto_popup')
 # driver = webdriver.Chrome(full_path_driver)
 # driver.get('https://www.baloto.com/resultados/')
 
@@ -38,6 +40,11 @@ while retry < max_retries:
     if len(text) > 0:
         print('Web page already charged')
         print('Next game: ', text)
+
+        click_on_bal_revancha(driver, revancha_pop)
+        time.sleep(10)
+        click_on_bal_revancha(driver, baloto_pop)
+
         retry = max_retries
     else:
         print(f'Web page is Not ready! Retry number {retry}')

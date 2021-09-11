@@ -1,0 +1,27 @@
+select * from general_info;
+
+insert into general_info (numero_sorteo, fecha) 
+values ('245', '05/09/21');
+
+select * from numbers_baloto;
+insert into numbers_baloto (acumulado, numero_ganadores, balota1,balota2,balota3,balota4,balota5, Id_general)
+values ('$ 700', '666', 5,6,13,14,45,2);
+
+insert into numbers_revancha (acumulado, numero_ganadores, balota1,balota2,balota3,balota4,balota5, Id_general)
+values ('$ 1800', '777', 7,14,24,28,32,2);
+
+select * from general_info;
+select * from numbers_baloto;
+select * from numbers_revancha;
+
+select general_info.fecha, (nb.balota1 + nr.balota1)/2 as avg_bal1 from general_info
+inner join numbers_baloto as nb on nb.id_general = general_info.id
+inner join numbers_revancha as nr on nr.id_general = general_info.id
+where general_info.fecha = '05/09/21';
+
+/* construir SP que caundo inserte 
+en las tables nombers..
+busque el id ingresado en la 
+tabla general.. y lo inserte 
+en la clave foranea
+*/

@@ -5,5 +5,7 @@
  "max_retries": 3,
  "time_out_short": 3,
  "time_out_middle": 6,
- "time_out_long": 9
+ "time_out_long": 9,
+ "revancha_popup": "revancha_popup",
+ "baloto_popup": "baloto_popup"
 }

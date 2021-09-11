@@ -26,3 +26,5 @@ def get_value_from_config(full_path: str, key: str) -> str:
         print('File Not found in the directory passed')
         return None
 
+def click_on_bal_revancha(driver, option):
+    driver.execute_script(f'document.querySelector("#{option}").click();')
